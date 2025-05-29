@@ -33,6 +33,42 @@ export INTERNAL_IP
 # Switch to the container's working directory
 cd /home/container || exit 1
 
+# create file ".pteroignore" if not exist with the content
+#.cache/
+#.local/
+#install.log
+#.npm/
+#node_modules/
+#archive*.tar.gz
+#backup/
+#cache/
+#logs/
+#crash-reports/
+#.console_history
+#usercache.json
+#plugins/dynmap/web/*
+#plugins/CoreProtect/database.db
+#bluemap/
+
+if [ ! -f "/home/container/.pteroignore" ]; then
+    echo ".cache/" > /home/container/.pteroignore
+    echo ".local/" >> /home/container/.pteroignore
+    echo "install.log" >> /home/container/.pteroignore
+    echo ".npm/" >> /home/container/.pteroignore
+    echo "node_modules/" >> /home/container/.pteroignore
+    echo "archive*.tar.gz" >> /home/container/.pteroignore
+    echo "backup/" >> /home/container/.pteroignore
+    echo "cache/" >> /home/container/.pteroignore
+    echo "logs/" >> /home/container/.pteroignore
+    echo "crash-reports/" >> /home/container/.pteroignore
+    echo ".console_history" >> /home/container/.pteroignore
+    echo "usercache.json" >> /home/container/.pteroignore
+    echo "plugins/dynmap/web/*" >> /home/container/.pteroignore
+    echo "plugins/CoreProtect/database.db" >> /home/container/.pteroignore
+    echo "bluemap/" >> /home/container/.pteroignore
+fi
+
+
 # Print Java version
 printf "\033[1m\033[33mcontainer@pterodactyl~ \033[0mjava -version\n"
 java -version
